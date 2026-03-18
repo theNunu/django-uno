@@ -1,0 +1,7 @@
+revisar  app.py de la app que haya creado
+django-admin startapp Academico (la cree dentro de aplicaciones)
+
+#------------------------superusuario
+acepeda
+alexkiller0408@gmail.com
+12345678
