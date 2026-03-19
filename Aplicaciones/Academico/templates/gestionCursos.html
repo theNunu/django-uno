@@ -1,12 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h2>que rollo plebes</h2>
-    
-</body>
-</html>
+{% extends "./base.html" %}
+{% block title %} Gestion de cursos {% endblock %}
+{%  block body %}
+{% for c in cursos %}
+{{ c.codigo }}
+<h3>{{ c.nombre }}</h3>
+{{ c.creditos }}
+{% endfor %}
+{%  endblock %}
