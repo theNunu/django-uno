@@ -1,9 +1,24 @@
 {% extends "./base.html" %}
 {% block title %} Gestion de cursos {% endblock %}
-{%  block body %}
+{% block body %}
 {% for c in cursos %}
-{{ c.codigo }}
-<h3>{{ c.nombre }}</h3>
-{{ c.creditos }}
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Codigo</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Creditos</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">{{ c.codigo }}</th>
+            <td>{{ c.nombre }}</td>
+            <td> {{ c.creditos }}</td>
+
+        </tr>
+
+    </tbody>
+</table>
 {% endfor %}
-{%  endblock %}
+{% endblock %}
