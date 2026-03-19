@@ -1,24 +1,43 @@
 {% extends "./base.html" %}
 {% block title %} Gestion de cursos {% endblock %}
 {% block body %}
-{% for c in cursos %}
-<table class="table">
+<!-- <button type="button"  class="btn-btn-primary text-white rounded w-75" >
+    crear
+</button> -->
+
+<button type="button" class="btn btn-primary"> crear</button>
+
+
+
+<table class="table table-striped mt-5">
     <thead>
         <tr>
             <th scope="col">Codigo</th>
             <th scope="col">Nombre</th>
             <th scope="col">Creditos</th>
+            <th scope="col">Opciones</th>
         </tr>
     </thead>
     <tbody>
+        {% for c in cursos %}
         <tr>
-            <th scope="row">{{ c.codigo }}</th>
+            <th>{{ c.codigo }}</th>
             <td>{{ c.nombre }}</td>
             <td> {{ c.creditos }}</td>
+            <td>
+                <button>
+                    eliminar
+                </button>
+                <button>
+                    editar
+                </button>
+          
+            </td>
 
         </tr>
+        {% endfor %}
 
     </tbody>
 </table>
-{% endfor %}
+
 {% endblock %}
