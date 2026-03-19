@@ -4,40 +4,57 @@
 <!-- <button type="button"  class="btn-btn-primary text-white rounded w-75" >
     crear
 </button> -->
-
+<style>
+    /* Para Chrome, Safari y Edge moderno */
+    .scroll-oculto::-webkit-scrollbar {
+        display: none;
+    }
+</style>
 <button type="button" class="btn btn-primary"> crear</button>
 
 
+<!-- 
+ height: 300px; /* O máx-height para un límite máximo */
+  overflow-y: auto; /* Muestra el scroll vertical solo cuando sea necesario */
+  border: 1px solid #ccc;
+  padding: 10px;
 
-<table class="table table-striped mt-5">
-    <thead>
-        <tr>
-            <th scope="col">Codigo</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Creditos</th>
-            <th scope="col">Opciones</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for c in cursos %}
-        <tr>
-            <th>{{ c.codigo }}</th>
-            <td>{{ c.nombre }}</td>
-            <td> {{ c.creditos }}</td>
-            <td>
-                <button>
-                    eliminar
-                </button>
-                <button>
-                    editar
-                </button>
-          
-            </td>
+-->
+<div class="scroll-oculto" style=" max-height: 300px; overflow-y: auto;">
+    <table class="table table-striped mt-5">
+        <thead>
+            <tr>
+                <th scope="col">Codigo</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Creditos</th>
+                <th scope="col">Opciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for c in cursos %}
+            <tr>
+                <th>{{ c.codigo }}</th>
+                <td>{{ c.nombre }}</td>
+                <td> {{ c.creditos }}</td>
+                <td>
+                    <button class="btn btn-danger">
+                        eliminar
+                    </button>
+                    <button class="btn btn-warning text-white">
+                        editar
+                    </button>
+                    <!-- <button type="button" class="btn btn-primary" href="{% url 'CursoDetalle' c.codigo %}"> ver</button> -->
+                    <a href="{% url 'CursoDetalle' c.codigo %}" class="btn btn-info btn-sm">ver</a>
+                </td>
 
-        </tr>
-        {% endfor %}
+            </tr>
+            {% endfor %}
 
-    </tbody>
-</table>
+        </tbody>
+    </table>
+
+
+</div>
+
 
 {% endblock %}

@@ -1,0 +1,25 @@
+{% extends "./base.html" %}
+{% block body %}
+<style>
+    .my-modal {
+        background-color: aqua;
+        padding: 20px;
+        width: 400px;
+        height: 220px;
+    }
+</style>
+
+<div class="my-modal rounded text-center">
+    <div class="h2">Detalle del Registro</div>
+
+    <div><strong>codigo:</strong> {{ item.codigo }}</div>
+    <div><strong>Nombre:</strong> {{ item.nombre}}</div>
+    <div><strong>creditos:</strong> {{ item.creditos}}</div>
+    <!-- <p><strong>Descripción:</strong> {{ item.descripcion }}</p> -->
+    <a href="/" class="btn btn-secondary mt-3">Volver al listado</a>
+
+    <!-- <a>Volver a la lista</a> -->
+
+</div>
+
+{% endblock %}
