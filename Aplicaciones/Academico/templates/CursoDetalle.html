@@ -2,24 +2,59 @@
 {% block body %}
 <style>
     .my-modal {
-        background-color: aqua;
+        background-color: white;
         padding: 20px;
         width: 400px;
         height: 220px;
     }
+
+    /* Contenido del Modal */
+    .modal-content {
+        /* background-color: white; */
+        /* padding: 20px; */
+        /* border-radius: 5px; */
+        /* width: 80%; */
+        /* max-width: 500px; */
+        /* box-shadow: 0 5px 15px rgba(0,0,0,0.3); */
+        background-color: rgba(0, 0, 0, 0.5);
+
+        width: 100vw;
+        /* Ancho completo del viewport */
+        height: 100vh;
+        /* Alto completo del viewport */
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 </style>
 
-<div class="my-modal rounded text-center">
-    <div class="h2">Detalle del Registro</div>
 
-    <div><strong>codigo:</strong> {{ item.codigo }}</div>
-    <div><strong>Nombre:</strong> {{ item.nombre}}</div>
-    <div><strong>creditos:</strong> {{ item.creditos}}</div>
-    <!-- <p><strong>Descripción:</strong> {{ item.descripcion }}</p> -->
-    <a href="/" class="btn btn-secondary mt-3">Volver al listado</a>
 
-    <!-- <a>Volver a la lista</a> -->
+    <h2>dadada</h2>
+    <div class="modal-content">
 
-</div>
+        <div class="my-modal rounded text-center">
+            <div class="h2">Detalle del Registro</div>
+
+            <div><strong>codigo:</strong> {{ item.codigo }}</div>
+            <div><strong>Nombre:</strong> {{ item.nombre}}</div>
+            <div><strong>creditos:</strong> {{ item.creditos}}</div>
+            <!-- <p><strong>Descripción:</strong> {{ item.descripcion }}</p> -->
+            <a href="/" class="btn btn-secondary mt-3">Volver al listado</a>
+
+            <!-- <a>Volver a la lista</a> -->
+
+        </div>
+
+    </div>
+    <h4>ffsfsfffsfs</h4>
+
+
+
+
+
+
+
 
 {% endblock %}
