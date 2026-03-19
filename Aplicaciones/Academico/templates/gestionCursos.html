@@ -20,45 +20,148 @@
   padding: 10px;
 
 -->
-  <div class="container">
-    <button type="button" class="btn btn-primary"> crear</button>
-    <div class="scroll-oculto" style=" max-height: 300px; overflow-y: auto;">
-    <table class="table table-striped mt-5">
-        <thead>
-            <tr>
-                <th scope="col">Codigo</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Creditos</th>
-                <th scope="col">Opciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for c in cursos %}
-            <tr>
-                <th>{{ c.codigo }}</th>
-                <td>{{ c.nombre }}</td>
-                <td> {{ c.creditos }}</td>
-                <td>
-                    <button class="btn btn-danger">
-                        eliminar
-                    </button>
-                    <button class="btn btn-warning text-white">
-                        editar
-                    </button>
-                    <!-- <button type="button" class="btn btn-primary" href="{% url 'CursoDetalle' c.codigo %}"> ver</button> -->
-                    <a href="{% url 'CursoDetalle' c.codigo %}" class="btn btn-info btn-sm">ver</a>
-                </td>
+<div>
+    <h2>formualeio</h2>
+    <form class="row g-3 needs-validation" novalidate>
+        <div class="col-md-4">
+            <label for="validationCustom01" class="form-label">First name</label>
+            <input type="text" class="form-control" id="validationCustom01" value="Mark" required>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label for="validationCustom02" class="form-label">Last name</label>
+            <input type="text" class="form-control" id="validationCustom02" value="Otto" required>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label for="validationCustomUsername" class="form-label">Username</label>
+            <div class="input-group has-validation">
+                <span class="input-group-text" id="inputGroupPrepend">@</span>
+                <input type="text" class="form-control" id="validationCustomUsername"
+                    aria-describedby="inputGroupPrepend" required>
+                <div class="invalid-feedback">
+                    Please choose a username.
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <label for="validationCustom03" class="form-label">City</label>
+            <input type="text" class="form-control" id="validationCustom03" required>
+            <div class="invalid-feedback">
+                Please provide a valid city.
+            </div>
+        </div>
+        <div class="col-md-3">
+            <label for="validationCustom04" class="form-label">State</label>
+            <select class="form-select" id="validationCustom04" required>
+                <option selected disabled value="">Choose...</option>
+                <option>...</option>
+            </select>
+            <div class="invalid-feedback">
+                Please select a valid state.
+            </div>
+        </div>
+        <div class="col-md-3">
+            <label for="validationCustom05" class="form-label">Zip</label>
+            <input type="text" class="form-control" id="validationCustom05" required>
+            <div class="invalid-feedback">
+                Please provide a valid zip.
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                <label class="form-check-label" for="invalidCheck">
+                    Agree to terms and conditions
+                </label>
+                <div class="invalid-feedback">
+                    You must agree before submitting.
+                </div>
+            </div>
+        </div>
+        <div class="col-12">
+            <button class="btn btn-primary" type="submit">Submit form</button>
+        </div>
+    </form>
+    form
+    <div class=" w-25 p-4 border">
+        <div class="h2 text-center">crear producto</div>
+        <div class="card-body ">
+            <form action="/registrarCurso/" method="POST"> {% csrf_token %}
+                <div class="form-group">
+                    <label class="form-label ">codigo</label>
+                    <input type="text" id="txtCodigo" name="txtCodigo" class="form-control" placeholder="44242"
+                        minlegth="6" minlegth="6" required>
+                </div>
 
-            </tr>
-            {% endfor %}
+                <div class="form-group">
+                    <label class="form-label">nombre</label>
+                    <input type="text" id="txtNombre" name="txtNombre" class="form-control" placeholder="Curso de Tilin"
+                        minlegth="6" minlegth="6" required>
 
-        </tbody>
-    </table>
+                </div>
 
+                <div class="form-group">
+                    <label class="form-label">creditos</label>
+                    <input type="text" id="txtCredito" name="txtCredito" class="form-control" placeholder="2" min="1"
+                        max="9" required>
+                </div>
+
+                <div class="form-group mt-3">
+                    <button type="submit" class="btn btn-success btn-block"> crear</button>
+                </div>
+
+
+            </form>
+
+        </div>
+
+    </div>
 
 </div>
+<div class="container">
+    <button type="button" class="btn btn-primary"> crear</button>
+    <div class="scroll-oculto" style=" max-height: 300px; overflow-y: auto;">
+        <table class="table table-striped mt-5">
+            <thead>
+                <tr>
+                    <th scope="col">Codigo</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Creditos</th>
+                    <th scope="col">Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for c in cursos %}
+                <tr>
+                    <th>{{ c.codigo }}</th>
+                    <td>{{ c.nombre }}</td>
+                    <td> {{ c.creditos }}</td>
+                    <td>
+                        <button class="btn btn-danger">
+                            eliminar
+                        </button>
+                        <button class="btn btn-warning text-white">
+                            editar
+                        </button>
+                        <!-- <button type="button" class="btn btn-primary" href="{% url 'CursoDetalle' c.codigo %}"> ver</button> -->
+                        <a href="{% url 'CursoDetalle' c.codigo %}" class="btn btn-info btn-sm">ver</a>
+                    </td>
 
-  </div>
+                </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+
+
+    </div>
+
+</div>
 
 
 
