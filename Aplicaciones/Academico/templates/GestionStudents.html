@@ -1,0 +1,56 @@
+{% extends "./base.html" %}
+{% block title %} Gestion de estuantes {% endblock %}
+{% block body %}
+
+<h1>gestion estudiantes</h1>
+
+
+<div class="container">
+    <button class="btn btn-success btn-block mt-5" onclick="abrirModalCrear()">
+        crear curso
+    </button>
+    <!-- <button type="button" class="btn btn-primary"> crear</button> -->
+    <div class="scroll-oculto mt-3" style=" max-height: 500px; overflow-y: auto;">
+        <table class="table table-striped mt-5">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Apellidos</th>
+                    <th scope="col">correos</th>
+                     <th scope="col">curso</th>
+                    <th scope="col">Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for c in students %}
+                <tr>
+                    <th>{{ c.estudiante_id }}</th>
+                    <th>{{ c.nombre }}</th>
+                    <td>{{ c.apellido }}</td>
+                    <td> {{ c.email }}</td>
+                    <td> {{ c.curso_id }}</td>
+                    <td>
+                        <button class="btn btn-danger">
+                            eliminar
+                        </button>
+                        <button class="btn btn-warning text-white">
+                            editar
+                        </button>
+
+                        <button class="btn btn-info btn-sm" onclick="abrirModal('{{ c.codigo }}')">ver</button>
+                    </td>
+
+                </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+
+
+    </div>
+
+</div>
+
+
+{% endblock %}

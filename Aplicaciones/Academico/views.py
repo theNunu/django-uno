@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Curso
+from .models import Curso, Estudiante
 from django.http import JsonResponse
 # Create your views here.
 from django.shortcuts import render, get_object_or_404
@@ -7,6 +7,11 @@ def home(request):
     cursos = Curso.objects.all()
     print("los cursos: ",cursos)
     return render(request, "gestionCursos.html", {"cursos": cursos})
+
+def getAllEstudents(request):
+    students = Estudiante.objects.all()
+    print("los estudiantes: ",students)
+    return render(request, "gestionStudents.html", {"students": students})
 
 
 # def getByCodigo(request, codigo):
