@@ -3,6 +3,6 @@ from . import views
 
 urlpatterns = [
     path("", views.home),
-    path("/<str:codigo>/", views.getByCodigo, name="CursoDetalle"),
+    path("detalle-curso/<str:codigo>/", views.getByCodigo), #se llama en el fetch de gestionCursos.html
     path("registrarCurso/", views.registrarCurso),
 ]

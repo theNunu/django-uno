@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Curso
+from django.http import JsonResponse
 # Create your views here.
 from django.shortcuts import render, get_object_or_404
 def home(request):
@@ -8,12 +9,24 @@ def home(request):
     return render(request, "gestionCursos.html", {"cursos": cursos})
 
 
+# def getByCodigo(request, codigo):
+#     # Obtener el objeto por su clave primaria (pk) o ID
+#     objeto = get_object_or_404(Curso, pk=codigo)
+#     # print("detalle de un producto: ",objeto)
+#     #    objeto = get_object_or_404(Cu0so, codigo=codigo) 
+#     return render(request, 'cursoDetalle.html', {'item': objeto})
+
 def getByCodigo(request, codigo):
-    # Obtener el objeto por su clave primaria (pk) o ID
-    objeto = get_object_or_404(Curso, pk=codigo)
-    # print("detalle de un producto: ",objeto)
-    #    objeto = get_object_or_404(Cu0so, codigo=codigo) 
-    return render(request, 'cursoDetalle.html', {'item': objeto})
+    try:
+        curso = Curso.objects.get(codigo=codigo)
+        data = {
+            'codigo': curso.codigo,
+            'nombre': curso.nombre,
+            'creditos': curso.creditos,
+        }
+        return JsonResponse(data)
+    except Curso.DoesNotExist:
+        return JsonResponse({'error': 'Curso no encontrado'}, status=404)
 
 def registrarCurso(request):
     codigo = request.POST['txtCodigo']
