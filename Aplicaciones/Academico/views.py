@@ -28,9 +28,30 @@ def getByCodigo(request, codigo):
     except Curso.DoesNotExist:
         return JsonResponse({'error': 'Curso no encontrado'}, status=404)
 
+# def registrarCurso(request):
+#     codigo = request.POST['txtCodigo']
+#     nombre = request.POST['txtNombre']
+#     creditos = request.POST['txtCredito']
+#     curso = Curso.objects.create(codigo=codigo, nombre=nombre, creditos=creditos)
+#     return redirect('/')
+
 def registrarCurso(request):
-    codigo = request.POST['txtCodigo']
-    nombre = request.POST['txtNombre']
-    creditos = request.POST['txtCredito']
-    curso = Curso.objects.create(codigo=codigo, nombre=nombre, creditos=creditos)
-    return redirect('/')
+    if request.method == 'POST':
+        codigo = request.POST.get('txtCodigo')
+        nombre = request.POST.get('txtNombre')
+        creditos = request.POST.get('txtCredito')
+        
+        # Creamos el curso
+        curso = Curso.objects.create(codigo=codigo, nombre=nombre, creditos=creditos)
+        
+        # Respondemos éxito
+        return JsonResponse({
+            'status': 'success',
+            'message': 'Curso creado correctamente',
+            'curso': {
+                'codigo': curso.codigo,
+                'nombre': curso.nombre,
+                'creditos': curso.creditos
+            }
+        })
+    return JsonResponse({'status': 'error'}, status=400)
