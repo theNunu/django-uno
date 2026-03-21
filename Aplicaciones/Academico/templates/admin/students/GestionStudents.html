@@ -1,4 +1,4 @@
-{% extends "./base.html" %}
+{% extends "base.html" %}
 {% block title %} Gestion de estuantes {% endblock %}
 {% block body %}
 <style>
@@ -94,6 +94,7 @@
                         </button>
 
                         <button class="btn btn-info btn-sm" onclick="abrirModal('{{ c.codigo }}')">ver</button>
+                                  <button class="btn btn-danger text-white">generar pdf</button>
                     </td>
 
                 </tr>

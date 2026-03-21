@@ -1,11 +1,12 @@
-{% extends "./base.html" %}
+{% extends "base.html" %}
+
 {% block title %} Gestion de cursos {% endblock %}
 {% block body %}
 <!-- <button type="button"  class="btn-btn-primary text-white rounded w-75" >
     crear
 </button> -->
+
 <style>
-    /* Para Chrome, Safari y Edge moderno */
     .scroll-oculto::-webkit-scrollbar {
         display: none;
     }
@@ -42,12 +43,13 @@
 
 -->
 <div class="container">
+    <h1 class="mt-4">Gestion de cursos</h1>
     <button class="btn btn-success btn-block mt-5" onclick="abrirModalCrear()">
         crear curso
     </button>
     <!-- <button type="button" class="btn btn-primary"> crear</button> -->
     <div class="scroll-oculto mt-3" style=" max-height: 500px; overflow-y: auto;">
-        <table class="table table-striped mt-5">
+        <table class="table table-striped mt-3">
             <thead>
                 <tr>
                     <th scope="col">Codigo</th>
@@ -101,7 +103,7 @@
             {% csrf_token %}
             <div class="form-group">
                 <label>Código</label>
-                <input type="text" name="txtCodigo" class="form-control"  required>
+                <input type="text" name="txtCodigo" class="form-control" required>
             </div>
             <div class="form-group">
                 <label>Nombre</label>

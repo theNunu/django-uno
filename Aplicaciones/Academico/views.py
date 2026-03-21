@@ -6,13 +6,13 @@ from django.shortcuts import render, get_object_or_404
 def home(request):
     cursos = Curso.objects.all()
     print("los cursos: ",cursos)
-    return render(request, "gestionCursos.html", {"cursos": cursos})
+    return render(request, "admin/courses/gestionCursos.html", {"cursos": cursos})
 
 def getAllEstudents(request):
     students = Estudiante.objects.all()
     cursos = Curso.objects.all()
     print("los estudiantes: ",students)
-    return render(request, "gestionStudents.html", {"students": students, "cursos": cursos})
+    return render(request, "admin/students/GestionStudents.html", {"students": students, "cursos": cursos})
 
 
 # def getByCodigo(request, codigo):

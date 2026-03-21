@@ -1,0 +1,3 @@
+    .scroll-oculto::-webkit-scrollbar {
+        display: none;
+    }
