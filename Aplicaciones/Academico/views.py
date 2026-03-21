@@ -60,3 +60,26 @@ def registrarCurso(request):
             }
         })
     return JsonResponse({'status': 'error'}, status=400)
+
+def saveStudent(request):
+    if request.method == 'POST':
+        nombre = request.POST.get('txtNombre')
+        apellido = request.POST.get('txtApellido')
+        email = request.POST.get('txtEmail')
+        curso_id = request.POST.get(252252)
+        print('lleganos')
+        
+        # Creamos el curso
+        student = Estudiante.objects.create(nombre=nombre, apellido=apellido, email=email, curso_id = curso_id)
+        
+        # Respondemos éxito
+        return JsonResponse({
+            'status': 'success',
+            'message': 'Estudiante creado correctamente',
+            'curso': {
+                'nombre': student.nombre,
+                'apellido': student.apellido,
+                'email': student.email
+            }
+        })
+    return JsonResponse({'status': 'error'}, status=400)
