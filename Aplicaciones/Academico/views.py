@@ -10,8 +10,9 @@ def home(request):
 
 def getAllEstudents(request):
     students = Estudiante.objects.all()
+    cursos = Curso.objects.all()
     print("los estudiantes: ",students)
-    return render(request, "gestionStudents.html", {"students": students})
+    return render(request, "gestionStudents.html", {"students": students, "cursos": cursos})
 
 
 # def getByCodigo(request, codigo):
@@ -66,9 +67,7 @@ def saveStudent(request):
         nombre = request.POST.get('txtNombre')
         apellido = request.POST.get('txtApellido')
         email = request.POST.get('txtEmail')
-        curso_id = request.POST.get(252252)
-        print('lleganos')
-        
+        curso_id = request.POST.get('curso_id')    
         # Creamos el curso
         student = Estudiante.objects.create(nombre=nombre, apellido=apellido, email=email, curso_id = curso_id)
         
@@ -79,7 +78,31 @@ def saveStudent(request):
             'curso': {
                 'nombre': student.nombre,
                 'apellido': student.apellido,
-                'email': student.email
+                'email': student.email,
+                'curso_id': student.curso_id
             }
         })
     return JsonResponse({'status': 'error'}, status=400)
+
+###
+# def saveStudent(request):
+#     if request.method == 'POST':
+#         nombre = request.POST.get('txtNombre')
+#         apellido = request.POST.get('txtApellido')
+#         email = request.POST.get('txtEmail')
+        
+#         # Capturamos el ID seleccionado en el select
+#         id_seleccionado = request.POST.get('curso_id')
+
+#         try:
+#             # Creamos el estudiante vinculándolo al ID del curso
+#             nuevo_estudiante = Estudiante.objects.create(
+#                 nombre=nombre,
+#                 apellido=apellido,
+#                 email=email,
+#                 curso_id=id_seleccionado # Django se encarga de la relación
+#             )
+#             return JsonResponse({'status': 'success', 'message': 'Estudiante registrado'})
+#         except Exception as e:
+#             return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
+###
