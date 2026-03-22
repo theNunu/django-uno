@@ -122,26 +122,24 @@ def getOneStudent(request, estudiante_id):
     except Curso.DoesNotExist:
         return JsonResponse({"error": "Estudiante no encontrado"}, status=404)
 
+from django.http import HttpResponse
+from django.template.loader import render_to_string
+from xhtml2pdf import pisa
+import io
 
-###
-# def saveStudent(request):
-#     if request.method == 'POST':
-#         nombre = request.POST.get('txtNombre')
-#         apellido = request.POST.get('txtApellido')
-#         email = request.POST.get('txtEmail')
+def generar_pdf(request, id):
+    student = get_object_or_404(Estudiante, estudiante_id=id)
+    
+    # El contexto debe ser un diccionario (como vimos antes)
+    contexto = {'student': student}
+    html_string = render_to_string('pdf_template.html', contexto)
 
-#         # Capturamos el ID seleccionado en el select
-#         id_seleccionado = request.POST.get('curso_id')
+    response = HttpResponse(content_type='application/pdf')
+    
+    # 'inline' le dice al navegador: "Intenta mostrarlo aquí mismo"
+    response['Content-Disposition'] = 'inline; filename="reporte.pdf"'
 
-#         try:
-#             # Creamos el estudiante vinculándolo al ID del curso
-#             nuevo_estudiante = Estudiante.objects.create(
-#                 nombre=nombre,
-#                 apellido=apellido,
-#                 email=email,
-#                 curso_id=id_seleccionado # Django se encarga de la relación
-#             )
-#             return JsonResponse({'status': 'success', 'message': 'Estudiante registrado'})
-#         except Exception as e:
-#             return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
-###
+    # ... (el resto de tu código de pisa.CreatePDF)
+    pisa_status = pisa.CreatePDF(io.BytesIO(html_string.encode('utf-8')), dest=response)
+    
+    return response

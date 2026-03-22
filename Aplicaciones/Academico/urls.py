@@ -8,5 +8,8 @@ urlpatterns = [
     #-----------------------------------------------
     path("students/",views.getAllEstudents , name='students'),
     path("registrarStudent/", views.saveStudent),
-    path("detail-student/<int:estudiante_id>/", views.getOneStudent)
+    path("detail-student/<int:estudiante_id>/", views.getOneStudent),
+
+    #hacer pdfs
+    path("do-one-pdf/<int:id>/",views.generar_pdf),
 ]

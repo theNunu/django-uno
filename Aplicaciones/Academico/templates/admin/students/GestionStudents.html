@@ -98,7 +98,8 @@
                         </button>
 
                         <button class="btn btn-info btn-sm" onclick="abrirModal('{{ c.estudiante_id }}')">ver</button>
-                        <button class="btn btn-danger text-white">generar pdf</button>
+                        <button class="btn btn-danger text-white" onclick="makePdf('{{ c.estudiante_id }}')">generar
+                            pdf</button>
                     </td>
 
                 </tr>
@@ -148,6 +149,13 @@
             })
             .catch(error => console.error('Error:', error));
     }
+    // ==============================================
+    function makePdf(student_id) {
+        // Esto abre la URL directamente en una pestaña nueva
+        // Sin fetch, sin errores de JSON, el navegador se encarga de todo.
+        window.open(`/do-one-pdf/${student_id}/`, '_blank');
+    }
+    // ==============================================
 
     function cerrarModal() {
         document.getElementById('miModalCustom').style.display = 'none';
