@@ -84,6 +84,19 @@ def saveStudent(request):
         })
     return JsonResponse({'status': 'error'}, status=400)
 
+def getOneStudent(request, estudiante_id):
+    try:
+        student = Estudiante.objects.get(estudiante_id=estudiante_id)
+        data = {
+            'estudiante_id': student.estudiante_id,
+            'nombre': student.nombre,
+            'apellido': student.apellido,
+            'email': student.email,
+        }
+        return JsonResponse(data)
+    except Curso.DoesNotExist:
+        return JsonResponse({'error': 'Estudiante no encontrado'}, status=404)
+
 ###
 # def saveStudent(request):
 #     if request.method == 'POST':

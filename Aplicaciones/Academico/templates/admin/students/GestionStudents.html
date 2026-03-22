@@ -26,25 +26,6 @@
     }
 </style>
 <h1>gestion estudiantes</h1>
-<select class="form-select" aria-label="Disabled select example" disabled>
-    <option selected>Open this select menu</option>
-    <option value="1">One</option>
-    <option value="2">Two</option>
-    <option value="3">Three</option>
-</select>
-<select class="form-select form-select-lg mb-3" aria-label="Large select example">
-    <option selected>Open this select menu</option>
-    <option value="1">One</option>
-    <option value="2">Two</option>
-    <option value="3">Three</option>
-</select>
-
-<select class="form-select form-select-sm" aria-label="Small select example">
-    <option selected>Open this select menu</option>
-    <option value="1">One</option>
-    <option value="2">Two</option>
-    <option value="3">Three</option>
-</select>
 
 <div id="modalCrear" class="modal-overlay" style="display: none;">
     <div class="my-modal rounded">
@@ -67,12 +48,13 @@
 
             <label>Selecciona el Curso:</label>
 
-            <select name="curso_id" id="selectCurso" required class="form-select form-select-sm" aria-label="Small select example">
+            <select name="curso_id" id="selectCurso" required class="form-select form-select-sm"
+                aria-label="Small select example">
                 <option value="">-- Seleccione un curso --</option>
                 {% for curso in cursos %}
                 <option value="{{ curso.codigo }}">{{ curso.nombre }}</option>
                 {% endfor %}
-                
+
             </select>
 
             <div class="mt-3 d-flex justify-content-between">
@@ -115,7 +97,7 @@
                             editar
                         </button>
 
-                        <button class="btn btn-info btn-sm" onclick="abrirModal('{{ c.codigo }}')">ver</button>
+                        <button class="btn btn-info btn-sm" onclick="abrirModal('{{ c.estudiante_id }}')">ver</button>
                         <button class="btn btn-danger text-white">generar pdf</button>
                     </td>
 
@@ -129,7 +111,49 @@
     </div>
 
 </div>
+
+<div id="miModalCustom" class="modal-overlay" style="display: none;">
+    <div class="my-modal rounded text-center">
+        <div class="h2">Detalle del Registro</div>
+        <div id="modal-detalle">
+        </div>
+        <button onclick="cerrarModal()" class="btn btn-secondary mt-3">Cerrar</button>
+    </div>
+</div>
+
 <script>
+    function abrirModal(student_id) {
+        console.log('el estudiante', student_id)
+        // 1. Hacemos la petición a la URL que ya tienes definida
+        fetch(`/detail-student/${student_id}/`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    console.log("Error: " + data.error);
+                } else {
+                    console.log('la data:', data)
+                    // 2. Inyectamos los datos en el HTML del modal
+                    const contenedor = document.getElementById('modal-detalle');
+                    contenedor.innerHTML = `
+                    <h2>Detalle de ${data.nombre} </h2>
+                    <p><strong>id:</strong> ${data.estudiante_id}</p>
+                    <p><strong>nombre:</strong> ${data.nombre}</p>
+                    <p><strong>apellido:</strong> ${data.apellido}</p>
+                    <p><strong>Créditos:</strong> ${data.email}</p>
+                `;
+                    // 3. Mostramos el modal
+                    document.getElementById('miModalCustom').style.display = 'flex';
+                }
+            })
+            .catch(error => console.error('Error:', error));
+    }
+
+    function cerrarModal() {
+        document.getElementById('miModalCustom').style.display = 'none';
+    }
+
+    // 3.........................................
+
     function abrirModalCrear() {
         document.getElementById('modalCrear').style.display = 'flex';
     }

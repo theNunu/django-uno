@@ -8,4 +8,5 @@ urlpatterns = [
     #-----------------------------------------------
     path("students/",views.getAllEstudents , name='students'),
     path("registrarStudent/", views.saveStudent),
+    path("detail-student/<int:estudiante_id>/", views.getOneStudent)
 ]
