@@ -26,9 +26,18 @@
     }
 </style>
 <h1>gestion estudiantes</h1>43333
-<i class="fas fa-user"></i>
-<i class="fa-solid fa-file-pdf"></i>
+<i class="fas fa-user fa-5x text-danger" title="un usuario"></i>
+<i class="fa-solid fa-file-pdf text-danger fa-3x"></i>
+<i class="fa-solid fa-eye" style="color: rgb(21, 96, 229);"></i>
+<i class="fa-solid fa-eye fa-3x text-info"></i>
+<i class="fa-solid fa-trash-can fa-3x" style="color: rgb(220, 61, 49);"></i>
+<i class="fa-solid fa-pen-to-square fa-4x" style="color: rgb(55, 91, 240);"></i>
 
+<div class="d-flex flex-column gap-3">
+    <div class="p-2 bg-light">Elemento 1</div>
+    <div class="p-2 bg-light">Elemento 2</div>
+    <div class="p-2 bg-light">Elemento 3</div>
+</div>
 
 <div id="modalCrear" class="modal-overlay" style="display: none;">
     <div class="my-modal rounded">
@@ -53,7 +62,7 @@
 
             <select name="curso_id" id="selectCurso" required class="form-select form-select-sm"
                 aria-label="Small select example">
-                <option value="">-- Seleccione un curso --</option>
+                <option value="">Seleccione un curso</option>
                 {% for curso in cursos %}
                 <option value="{{ curso.codigo }}">{{ curso.nombre }}</option>
                 {% endfor %}
@@ -93,16 +102,18 @@
                     <td> {{ c.email }}</td>
                     <td> {{ c.curso_id }}</td>
                     <td>
-                        <button class="btn btn-danger">
-                            eliminar
-                        </button>
-                        <button class="btn btn-warning text-white">
-                            editar
-                        </button>
+                        <div class="d-flex gap-2">
+                            <i class="fa-solid fa-trash-can fa-1x" style="color: rgb(220, 61, 49);"
+                                title=" eliminar"></i>
+                            <i class="fa-solid fa-eye fa-1x" style="color: rgb(21, 96, 229);"
+                                onclick="abrirModal('{{ c.estudiante_id }}')" title="ver mas"></i>
+                            <i class="fa-solid fa-pen-to-square fa-1x" style="color: rgb(55, 91, 240);"
+                                title="editar"></i>
+                            <i class="fa-solid fa-file-pdf text-danger fa-1x" title="generar pdf"
+                                onclick="makePdf('{{ c.estudiante_id }}')"></i>
+                        </div>
 
-                        <button class="btn btn-info btn-sm" onclick="abrirModal('{{ c.estudiante_id }}')">ver</button>
-                        <button class="btn btn-danger text-white" onclick="makePdf('{{ c.estudiante_id }}')">generar
-                            pdf</button>
+
                     </td>
 
                 </tr>
