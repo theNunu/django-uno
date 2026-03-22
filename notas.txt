@@ -5,3 +5,7 @@ django-admin startapp Academico (la cree dentro de aplicaciones)
 acepeda
 alexkiller0408@gmail.com
 12345678
+
+#_-------
+generar pdfs
+pip install weasyprint
